@@ -112,14 +112,13 @@
         }
           
 
-        //new
+        //new login
+
         var info = {
             "Username": "surya123",
             "pass": "surya"
         };
-        var success = "Login success".fontcolor('green').fontsize('100px');
         
-
         function btnclick() {
             var username = document.getElementById("textusername").value;
             var erroruser = document.getElementById("errorusername");
@@ -160,6 +159,26 @@
 
 
         }
+        function validate(){
+            var password = document.getElementById("cpass").value;
+           
+            var regExp=/(?=.*[A-Z])\w{4,10}/;
+           
+            if(password.match(regExp)){
+                document.getElementById("btn").disabled=false;
+            }else{
+                document.getElementById("btn").disabled=true;
+            }
+        }
+        function validat(){
+            var Cuseer = document.getElementById("cuser").value;
+            var first=Cuseer.charCodeAt(0);
+            if(first>=65 && first<=90){
+                document.getElementById("cpass").disabled=false;
+            }else{
+                document.getElementById("cpass").disabled=true;
+            }
+        }
            
 
     </script>
@@ -169,7 +188,7 @@
     <div id="log">
         <div class="container mt-4 border p-4 bg-light" id="contain">
             <h3 class="text-center text-danger mb-3">Login form</h3>
-            <dl style="font-size: 25px; font-weight: bold;">
+            <dl>
                 <dt>User name</dt>
                 <dd><input class="form-control" type="text" id="textusername"></dd>
                 <dd id="errorusername" class="text-danger"></dd>
@@ -189,8 +208,8 @@
     
     
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-primary" id="exampleModalLabel">Create new id pass</h5>
@@ -201,14 +220,14 @@
                             <h4 class="text-center text-danger mb-3">* create new id pass *</h4>
                             <dl>
                                 <dt>New User name</dt>
-                                <dd><input class="form-control" type="text" value="" id="cuser"></dd>
-    
+                                <dd><input class="form-control" type="text"onblur="validat()" value="" id="cuser"></dd>
+                                  <dd class="text-danger">MUST START WITH CAPITAL LETTER</dd>
                                 <dt>New password</dt>
-                                <dd><input class="form-control" type="password" name="pass" id="cpass"></dd>
-    
+                                <dd><input class="form-control" disabled onkeyup="validate()" type="password" name="pass" id="cpass"></dd>
+                                 <dd>MUST BE ALPHA NUMERIC</dd>
     
                                 <button onclick="changeidpass()" class="btn btn-outline-primary"
-                                    data-bs-dismiss="modal">Submit</button>
+                                    data-bs-dismiss="modal" id="btn" disabled>Submit</button>
     
                             </dl>
                         </div>
